@@ -1,7 +1,7 @@
 # Claim classification - verifiableVsUnverifiable and FactualVsFeeling 
 ## Claim classification using CNN- and LSTM-based sentence representation
 
-##Library Requirments
+## Library Requirments
 * python 2.7
 * theano
 * gensim - https://radimrehurek.com/gensim/install.html
@@ -12,7 +12,7 @@ Yoon's [Convolutional Neural Networks for Sentence Classification](http://arxiv.
 ## 2) sentence-level LSTM
 Similar to model 1, concatenating an embedding layer with a LSTM-RNN module - http://deeplearning.net/tutorial/lstm.html#lstm
 
-##Datasets
+## Datasets
 * Verifiable and Unverifiable claims dataset
 * Factual and Feeling claims dataset
 
@@ -27,6 +27,7 @@ Similar to model 1, concatenating an embedding layer with a LSTM-RNN module - ht
 ### Preprocess datasets using different embeddings for CNN claim classification
 ### Run scripts as following for converting datasets into emebdding vectors/matrices
       python preprocess_data_verify.py ../embeddings/GoogleNews-vectors-negative300.bin   ../embeddings/deps.words ../embeddings/factual.en.word2vec.model.bin
+
       python preprocess_data_factfeel.py ../embeddings/Google..   ../embeddings/deps.words ../embeddings/factual.en..
       
 * Creates embedding weight matrices and word dictionary in pickle format. 
@@ -34,6 +35,7 @@ Similar to model 1, concatenating an embedding layer with a LSTM-RNN module - ht
 
 ### Preprocess datasets using different embeddings for LSTM claim classification
       python preprocess_data_verify.py ../embeddings/GoogleNews-vectors-negative300.bin   ../embeddings/deps.words ../embeddings/factual.en.word2vec.model.bin
+
       python preprocess_data_factfeel.py ../embeddings/Google..   ../embeddings/deps.words ../embeddings/factual.en..
 
 * Creates embedding weight matrices and word dictionary in pickle format. 
@@ -42,29 +44,44 @@ Similar to model 1, concatenating an embedding layer with a LSTM-RNN module - ht
 ## classification
 ## cnn based claim calssification -  running scripts to get predictions on 2 datasets
    1. verifiabile and Unverifiable dataset
-        python conv_net_sentence_verify.py -word2vec  
-        python conv_net_sentence_verify.py -dep2vec
-        python conv_net_sentence_verify.py -fact2vec
-        python conv_net_sentence_verify.py -concat
+
+      python conv_net_sentence_verify.py -word2vec  
+
+      python conv_net_sentence_verify.py -dep2vec
+
+      python conv_net_sentence_verify.py -fact2vec
+
+      python conv_net_sentence_verify.py -concat
 
    2. factual and feel dataset  
+
         python conv_net_sentence_factfeel.py -word2vec
+
         python conv_net_sentence_factfeel.py -dep2vec
+
         python conv_net_sentence_factfeel.py -fact2vec
+
         python conv_net_sentence_factfeel.py -concat
 
 ## lstm based claim classification of 2 datasets 
 
    3. verifiabile and Unverifiable dataset
+
         python lstm_verify.py -word2vec
+
         python lstm_verify.py -dep2vec
+
         python lstm_verify.py -fact2vec
+
         python lstm_verify.py -concat
 
    4. factual and feel dataset
         python lstm_factfeel.py -word2vec
+
         python lstm_factfeel.py -dep2vec
+
         python lstm_factfeel.py -fact2vec
+
         python lstm_factfeel.py -concat
 
 
