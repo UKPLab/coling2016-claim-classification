@@ -91,9 +91,6 @@ def preprocess_data(data_folder):
 
             words = set(orig_claim.split())
 
-            for word in words:
-                vocab[word] += 1
-
             claim_meta  = {"y":labelshash[clabel],
                       "text": orig_claim,      
                       "num_words": len(orig_claim.split()),
