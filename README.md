@@ -4,6 +4,7 @@
 ## Library Requirments
 * python 2.7
 * theano
+* pandas
 * gensim - https://radimrehurek.com/gensim/install.html
 
 ## 1) sentence-level CNN
@@ -29,7 +30,7 @@ Similar to model 1, concatenating an embedding layer with a LSTM-RNN module - ht
 
     python preprocess_data_verify.py ../embeddings/GoogleNews-vectors-negative300.bin   ../embeddings/deps.words ../embeddings/factual.en.word2vec.model.bin
 
-    python preprocess_data_factfeel.py ../embeddings/Google..   ../embeddings/deps.words ../embeddings/factual.en..
+    python preprocess_data_factfeel.py ../embeddings/GoogleNews-vectors-negative300.bin ../embeddings/deps.words ../embeddings/factual.en.word2vec.model.bin
       
 * Creates embedding weight matrices and word dictionary in pickle format. 
 * These files are generated in the current directory
@@ -37,7 +38,7 @@ Similar to model 1, concatenating an embedding layer with a LSTM-RNN module - ht
 ### Preprocess datasets using different embeddings for LSTM claim classification
     python preprocess_data_verify.py ../embeddings/GoogleNews-vectors-negative300.bin   ../embeddings/deps.words ../embeddings/factual.en.word2vec.model.bin
 
-    python preprocess_data_factfeel.py ../embeddings/Google..   ../embeddings/deps.words ../embeddings/factual.en..
+    python preprocess_data_factfeel.py ../embeddings/GoogleNews-vectors-negative300.bin    ../embeddings/deps.words ../embeddings/factual.en.word2vec.model.bin
 
 * Creates embedding weight matrices and word dictionary in pickle format. 
 * These files are generated in the current directory
