@@ -20,7 +20,8 @@ Similar to model 1, concatenating an embedding layer with a LSTM-RNN module - ht
 ## Embeddings used in Experiments
 *  Word2Vec - Mikolov 
 *  Dependency embeddings - Omer levy et. al
-*  Factual embeddings    - compiled from FactBank 1.0 corpus using Gensim
+*  Factual embeddings    - compile from FactBank 1.0 corpus using Gensim
+   - Go through the README placed inside compile_embeddings_factbankcorpus folder to compile factual embeddings
 *  concatenated embeddings - cocnatenate all three embeddings into stacked embeddings of 300 dimensional size
 *  Embeddings are placed in the embeddings folder
 
