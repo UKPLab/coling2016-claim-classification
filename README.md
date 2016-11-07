@@ -1,99 +1,141 @@
-# Claim classification - verifiableVsUnverifiable and FactualVsFeeling 
-## Claim classification using CNN- and LSTM-based sentence representation in on online user comments
+# CNN- and LSTM-based Claim Classification in Online User Comments
 
-## Library Requirments
-* python 2.7
-* theano
-* pandas
-* gensim - https://radimrehurek.com/gensim/install.html
+This project contains experimental code for classifying claims using convolutional neural networks (CNNs) and long short-term memory networks (LSTMs).
 
-## 1) sentence-level CNN
-Yoon's [Convolutional Neural Networks for Sentence Classification](http://arxiv.org/abs/1408.5882) - An embedding layer followed by convolution layer.
+Please use the following citation:
 
-## 2) sentence-level LSTM
-Similar to model 1, concatenating an embedding layer with a LSTM-RNN module - http://deeplearning.net/tutorial/lstm.html#lstm
+```
+@inproceedings{guggilla2016cnn,
+  author       = {Chinnappa Guggilla and Tristan Miller and Iryna Gurevych},
+  title	       = {{CNN}- and {LSTM}-based Claim Classification in Online User Comments},
+  year	       = 2016,
+  booktitle    = {Proceedings of the 26th International Conference on Computational Linguistics (COLING 2016)},
+  month	       = dec,
+  url          = {https://www.ukp.tu-darmstadt.de/fileadmin/user_upload/Group_UKP/publikationen/2016/2016_COLING_CG.pdf},
+  note	       = {To appear},
+}
+```
 
-## Datasets from online user comments
-* Verifiable and Unverifiable claims dataset
-* Factual and Feeling claims dataset
+> **Abstract:** When processing arguments in online user interactive discourse, it is often necessary to determine their bases of support. In this paper, we describe a supervised approach, based on deep neural networks, for classifying the claims made in online arguments. We conduct experiments using convolutional neural networks (CNNs) and long short-term memory networks (LSTMs) on two claim data sets compiled from online user comments. Using different types of distributional word embeddings, but without incorporating any rich, expensive set of features, we achieve a significant improvement over the state of the art for one data set (which categorizes arguments as factual vs. emotional), and performance comparable to the state of the art on the other data set (which categorizes claims according to their verifiability). Our approach has the advantages of using a generalized, simple, and effective methodology that works for claim categorization on different data sets and tasks.
 
-## Embeddings used in Experiments
-*  Word2Vec - Mikolov 
-*  Dependency embeddings - Omer levy et. al
-*  Factual embeddings    - compile from FactBank 1.0 corpus using Gensim
-   - Go through the README placed inside compile_embeddings_factbankcorpus folder to compile factual embeddings
-*  concatenated embeddings - cocnatenate all three embeddings into stacked embeddings of 300 dimensional size
-*  Embeddings are placed in the embeddings folder
 
-## Preprocessing
-### Preprocess datasets using different embeddings for CNN claim classification
-### Run scripts as following for converting datasets into emebdding vectors/matrices
+Contact person: Tristan Miller, miller@ukp.informatik.tu-darmstadt.de
 
+https://www.ukp.tu-darmstadt.de/
+
+https://www.tu-darmstadt.de/
+
+
+Don't hesitate to send us an e-mail or report an issue, if something is broken (and it shouldn't be) or if you have further questions.
+
+> This repository contains experimental software and is published for the sole purpose of giving additional background details on the respective publication. 
+
+## Project structure
+
+* `cnn_claim_classification` -- Experiments using Yoon's [Convolutional Neural Networks for Sentence Classification](http://arxiv.org/abs/1408.5882), an embedding layer followed by convolution layer.
+* `lstm_claim_classification` -- Experiments similar to the above, but concatenating an embedding layer with an [LSTM-RNN module](http://deeplearning.net/tutorial/lstm.html#lstm).
+* `compile_embeddings_factbankcorpus` -- Code for compiling factual embeddings used in the above experiments.
+
+## Requirements
+
+* Software dependencies
+  * Python 2.7
+  * [Theano](http://deeplearning.net/software/theano/)
+  * [pandas](http://pandas.pydata.org/)
+  * [gensim](https://radimrehurek.com/gensim/install.html)
+* Data sets
+  * Park & Cardie's [verifiable and unverifiable claims data set](http://www.aclweb.org/anthology/W14-2105)
+  * Oraby et al.'s [Fact-Feeling data set](https://nlds.soe.ucsc.edu/node/33)
+* Embeddings
+  *  Word2Vec (Mikolov)
+  *  Dependency embeddings (Levy et al.)
+  *  Factual embeddings -- compile these from the FactBank 1.0 corpus using Gensim; see instructions in [`compile_embeddings_factbankcorpus`](compile_embeddings_factbankcorpus/README.md)
+  *  Concatenated embeddings -- cocnatenate all three embeddings into stacked embeddings of 300 dimensions
+
+Embeddings should be placed in an `embeddings` folder.
+
+## Running the experiments
+
+1. Preprocessing
+
+	To preprocess data sets using different embeddings for CNN claim classification, run these scripts for converting datasets into emebdding vectors/matrices:
+
+	````
     python preprocess_data_verify.py ../embeddings/GoogleNews-vectors-negative300.bin   ../embeddings/deps.words ../embeddings/factual.en.word2vec.model.bin
 
     python preprocess_data_factfeel.py ../embeddings/GoogleNews-vectors-negative300.bin ../embeddings/deps.words ../embeddings/factual.en.word2vec.model.bin
+	````
       
-* Creates embedding weight matrices and word dictionary in pickle format. 
-* These files are generated in the current directory
+    To preprocess data sets using different embeddings for LSTM claim classification:
 
-### Preprocess datasets using different embeddings for LSTM claim classification
+	````
     python preprocess_data_verify.py ../embeddings/GoogleNews-vectors-negative300.bin   ../embeddings/deps.words ../embeddings/factual.en.word2vec.model.bin
 
     python preprocess_data_factfeel.py ../embeddings/GoogleNews-vectors-negative300.bin    ../embeddings/deps.words ../embeddings/factual.en.word2vec.model.bin
+	````
 
-* Creates embedding weight matrices and word dictionary in pickle format. 
-* These files are generated in the current directory
+    In both cases, the scripts will create embedding weight matrices and word dictionary in pickle format. The files are generated in the current directory.
 
-## Create Predictions output directory  
-* Create predictions directory in cnn and lstm claim classification folders
-* mkdir predictions
+2. Create output directory for predictions
 
-## classification
-## cnn based claim calssification -  running scripts to get predictions on 2 datasets
-   1. verifiabile and Unverifiable dataset
+	````
+	mkdir cnn_claim_classification/predictions
+	mkdir lstm_claim_classification/predictions
+	````
 
-      python conv_net_sentence_verify.py -word2vec  
+3. Perform CNN-based classification
+
+	* Verifiabile and unverifiable data set:
+
+	  ````
+      python conv_net_sentence_verify.py -word2vec
 
       python conv_net_sentence_verify.py -dep2vec
 
       python conv_net_sentence_verify.py -fact2vec
 
       python conv_net_sentence_verify.py -concat
+	  ````
 
-   2. factual and feel dataset  
+    * Fact-Feeling data set:
 
-        python conv_net_sentence_factfeel.py -word2vec
+      ````
+      python conv_net_sentence_factfeel.py -word2vec
 
-        python conv_net_sentence_factfeel.py -dep2vec
+      python conv_net_sentence_factfeel.py -dep2vec
 
-        python conv_net_sentence_factfeel.py -fact2vec
+      python conv_net_sentence_factfeel.py -fact2vec
 
-        python conv_net_sentence_factfeel.py -concat
+      python conv_net_sentence_factfeel.py -concat
+	  ````
 
-## lstm based claim classification of 2 datasets 
+4. Perform LSTM-based classification
 
-   3. verifiabile and Unverifiable dataset
+	* Verifiabile and unverifiable data set:
 
-        python lstm_verify.py -word2vec
+      ````
+      python lstm_verify.py -word2vec
 
-        python lstm_verify.py -dep2vec
+      python lstm_verify.py -dep2vec
 
-        python lstm_verify.py -fact2vec
+      python lstm_verify.py -fact2vec
 
-        python lstm_verify.py -concat
+      python lstm_verify.py -concat
+	  ````
 
-   4. factual and feel dataset
+    * Fact-Feeling data set:
 
-        python lstm_factfeel.py -word2vec
+      ````
+      python lstm_factfeel.py -word2vec
 
-        python lstm_factfeel.py -dep2vec
+      python lstm_factfeel.py -dep2vec
 
-        python lstm_factfeel.py -fact2vec
+      python lstm_factfeel.py -fact2vec
 
-        python lstm_factfeel.py -concat
+      python lstm_factfeel.py -concat
+	  ````
 
-# Output
-  * corresponding claim predictions with given embeddings will be stored in the predictions folder 
-  * Accuracies will be reported in the commandline. Choose the best accuracy from iterations 
-  * Ex: prediction example file format - cnn_verifiability_word2vec_predictions.txt
+5. Check the output
+
+   The corresponding claim predictions with given embeddings will be stored in the `predictions` folder. Accuracies will be reported in the console output. Choose the best accuracy from iterations.
     
