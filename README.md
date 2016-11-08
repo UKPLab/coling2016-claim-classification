@@ -39,6 +39,7 @@ Don't hesitate to send us an e-mail or report an issue, if something is broken (
 ## Requirements
 
 * Software dependencies
+  * Perl 5
   * Python 2.7
   * [Theano](http://deeplearning.net/software/theano/)
   * [pandas](http://pandas.pydata.org/)
