@@ -9,10 +9,11 @@ Please use the following citation:
   author       = {Chinnappa Guggilla and Tristan Miller and Iryna Gurevych},
   title	       = {{CNN}- and {LSTM}-based Claim Classification in Online User Comments},
   year	       = 2016,
-  booktitle    = {Proceedings of the 26th International Conference on Computational Linguistics (COLING 2016)},
+  booktitle    = {Proceedings of the 26th International Conference on Computational Linguistics: Technical Papers (COLING 2016)},
   month	       = dec,
   url          = {https://www.ukp.tu-darmstadt.de/fileadmin/user_upload/Group_UKP/publikationen/2016/2016_COLING_CG.pdf},
-  note	       = {To appear},
+  pages = {2740--2751},
+  isbn = {978-4-87974-702-0},
 }
 ```
 
