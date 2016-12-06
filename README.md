@@ -12,8 +12,8 @@ Please use the following citation:
   booktitle    = {Proceedings of the 26th International Conference on Computational Linguistics: Technical Papers (COLING 2016)},
   month	       = dec,
   url          = {https://www.ukp.tu-darmstadt.de/fileadmin/user_upload/Group_UKP/publikationen/2016/2016_COLING_CG.pdf},
-  pages = {2740--2751},
-  isbn = {978-4-87974-702-0},
+  pages        = {2740--2751},
+  isbn         = {978-4-87974-702-0},
 }
 ```
 
